@@ -5,4 +5,6 @@ class Account < ActiveRecord::Base
             format: { with: /\A[a-z][a-z0-9\-]+[a-z0-9]\Z/ },
             uniqueness: true
 
+  accepts_nested_attributes_for :owner
+
 end
