@@ -1,8 +1,7 @@
 FactoryGirl.define do
   factory :membership do
-    account nil
-user nil
-role "MyString"
+    account
+    user
+    role SYSTEM_ROLES.first
   end
-
 end
