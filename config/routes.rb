@@ -8,6 +8,7 @@ Getlotnews::Application.routes.draw do
   root to: 'welcome#index'
 
   resource :account, only: [:new, :create]
+  resource :dashboard, only: [:show]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
