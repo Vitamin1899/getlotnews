@@ -1,5 +1,11 @@
 Getlotnews::Application.routes.draw do
 
+  class SubdomainRequired
+    def self.matches?(request)
+      request.subdomain.present? &amp;&amp; request.subdomain != "www"
+    end
+  end
+
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -8,7 +14,10 @@ Getlotnews::Application.routes.draw do
   root to: 'welcome#index'
 
   resource :account, only: [:new, :create]
-  resource :dashboard, only: [:show]
+
+  constraints SubdomainRequired do
+    root to: 'dashboards#show', as: 'subdomain_root'
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
