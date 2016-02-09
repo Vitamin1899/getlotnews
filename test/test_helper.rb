@@ -20,3 +20,7 @@ module MiniTest::Expectations
   infect_an_assertion :assert_template, :must_render_template
   infect_an_assertion :assert_response, :must_respond_with
 end
+
+class ActionController::TestCase
+  include Devise::TestHelpers
+end
