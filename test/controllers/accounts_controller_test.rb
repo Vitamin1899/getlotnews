@@ -1,6 +1,12 @@
 require 'test_helper'
 
 class AccountsControllerTest < ActionController::TestCase
+
+  let(:account_attributes) do
+    FactoryGirl.attributes_for(:account).
+      merge(owner_attributes: FactoryGirl.attributes_for(:user))
+  end
+
   it 'shows new account form' do
     get :new
 
@@ -9,11 +15,6 @@ class AccountsControllerTest < ActionController::TestCase
 
     assigns(:account).must_be_instance_of Account
     assigns(:account).owner.must_be_instance_of User
-  end
-
-  let(:account_attributes) do
-    FactoryGirl.attributes_for(:account).
-      merge(owner_attributes: FactoryGirl.attributes_for(:user))
   end
 
   it 'creates new account' do
